@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>App42 Sample Java-MySql Application</title>
+<title> BHAVYA APP </title>
 <link href="css/style-User-Input-Form.css" rel="stylesheet"
 	type="text/css">
 <script type="text/javascript" src="js/jquery-1.6.4.js"></script>
@@ -28,7 +28,7 @@
 		});
 	});
 </script>
-<body>
+<body bgcolor="yellow">
 	<div class="App42PaaS_header_wrapper">
 		<div class="App42PaaS_header_inner">
 			<div class="App42PaaS_header">
