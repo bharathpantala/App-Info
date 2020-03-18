@@ -28,7 +28,7 @@
 		});
 	});
 </script>
-<body bgcolor="yellow">
+<body bgcolor="green">
 	<div class="App42PaaS_header_wrapper">
 		<div class="App42PaaS_header_inner">
 			<div class="App42PaaS_header">
