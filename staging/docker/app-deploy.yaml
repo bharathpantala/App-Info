@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: appinfo
+  labels:
+    app: appinfo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: appinfo
+  template:
+    metadata:
+      labels:
+        app: scpoutils
+    spec:
+      containers:
+        - name: appinfo 
+          image: app:1.0
+          stdin: true
+          tty: true 
+          env:
+          - name: DB_HOST
+            value: 'mysql'
+          - name: DB_NAME
+            value: 'sample'
+          - name: DB_PORT
+            value: '3306'
+          - name: DB_PWD
+            value: 'sharath10'
+          - name: DB_USER
+            value: root
+          volumeMounts:
+            - name: appinfo
+              mountPath: /opt/app
+
+      volumes:
+        - name: appinfo
+          emptyDir: {}
