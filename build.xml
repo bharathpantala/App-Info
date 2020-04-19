@@ -2,9 +2,13 @@
 <project name="App-Info" default="main" basedir=".">
     <!-- Sets variables which can later be used. -->
     <!-- The value of a property is accessed via ${} -->
+    <property name="build.number" value="2020.1" />
+    <property name="app.version" value="${env.APP_VERSION}" />
+    <property name="build.date.pattern" value="yyyyMMdd_HHmm" />
     <property name="install.dir" location="tomcat" />
     <property name="build.dir" location="target" />
     <property name="artifact.dir" location="install" />
+    <property name="docker.staging.dir" location="staging/docker" />
 
     <!-- Deletes the existing build, docs and dist directory-->
     <target name="clean">
@@ -23,12 +27,55 @@
               <include name="**" />
             </fileset>
         </copy>
-       <copy todir="${artifact.dir}/webapps">
+        <copy todir="${artifact.dir}/webapps">
             <fileset dir="${build.dir}">
               <include name="App-Info-release/**" />
             </fileset>
         </copy>
 
+    </target>
+
+    <target name="docker-images" description="creating docker images for applications">
+        <echo message="Building the App-Info Docker Image" />
+
+        <antcall target="app-image"/>
+    </target>
+
+    <target name="app-staging" description="creating docker image for app">
+
+        <copy todir="${docker.staging.dir}">
+            <fileset dir="." includes="${artifact.dir}"/>
+        </copy>
+    </target>
+	
+    <target name="app-image" description="creating docker image for app">
+
+        <copy todir="${docker.staging.dir}">
+            <fileset dir="." includes="${artifact.dir}"/>
+        </copy>
+		
+        <fixcrlf srcdir="${docker.staging.dir}"
+                 includes="**/*.files,**/*.list,**/*.sh,**/*.sh.*" eol="lf" eof="remove" />
+
+        <tstamp>
+            <format property="build.number" pattern="${build.date.pattern}"/>
+        </tstamp>
+
+        <echo message="APP_BUILD: ${build.number}" />
+
+        <exec dir="${docker.staging.dir}" executable="docker">
+            <arg value="image" />
+            <arg value="build"/>
+            <arg value="--build-arg"/>
+            <arg value="APP_BUILD=${build.number}"/>
+            <arg value="--build-arg"/>
+            <arg value="APP_VERSION=${app.version}"/>
+            <arg value="-f" />
+            <arg value="Dockerfile" />
+            <arg value="-t" />
+            <arg value="app/info:${app.version}" />
+            <arg value="."/>
+        </exec>
     </target>
 
     <!-- Deletes the existing build, docs and dist directory-->
