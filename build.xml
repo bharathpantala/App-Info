@@ -7,11 +7,10 @@
     <property name="build.dir" location="target" />
     <property name="artifact.dir" location="install" />
     <property name="docker-staging.dir" location="staging/docker" />
-    <property name="dockerhub-name" value="somename" />
     <property name="project-name" value="app-info" />
     <property name="version" value="10.1" />
     <property name="archive" value="tar" />
-    <property name="bucket" value="s3://app-info-jen/" />
+    <property name="realease" value="2020.11" />
 
     <!-- Deletes the existing build, docs and dist directory-->
     <target name="clean">
@@ -58,7 +57,7 @@
         <exec dir="${docker-staging.dir}" executable="docker">
             <arg value="build"/>
             <arg value="-t" />
-	    <arg value="${dockerhub-name}/${project-name}:${version}" />
+	    <arg value="${reg.name}/${project-name}:${version}" />
 	    <arg value="."/>
         </exec>
     </target>
@@ -122,7 +121,7 @@
              <arg value="s3" />
              <arg value="cp" />
 	         <arg value="${project-name}-${version}.tar.gz" />
-             <arg value="${bucket}" />
+             <arg value="s3://${bucket.name}/${release}/" />
         </exec>
     </target>
 	
