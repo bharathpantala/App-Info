@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <project name="App-Info" default="main" basedir=".">
-    <property file="build.properties"/>
     <!-- Sets variables which can later be used. -->
     <!-- The value of a property is accessed via ${} -->
     <property name="install.dir" location="tomcat" />
@@ -11,6 +10,10 @@
     <property name="version" value="10.1" />
     <property name="archive" value="tar" />
     <property name="realease" value="2020.11" />
+    <property name="ai.release" value="${env.DOC_USER}" />
+    <property name="ai.password" value="${env.DOC_PWD}" />
+    <property name="reg.name" value="${env.DOC_REG}" />
+    <property name="bucket.name" value="${env.BUCKET}" />
 
     <!-- Deletes the existing build, docs and dist directory-->
     <target name="clean">
