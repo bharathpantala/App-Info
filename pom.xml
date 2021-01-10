@@ -4,6 +4,7 @@
   <artifactId>App-Info</artifactId>
   <version>release</version>
   <packaging>war</packaging>
+	
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>
