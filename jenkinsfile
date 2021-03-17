@@ -6,23 +6,42 @@ pipeline {
       maven "maven"
       ant "ant"
    }
-   
+
+   // Git Repo URL
     stages {
       stage('SCM') {
          steps {
             git 'https://github.com/anunaidu/App-Info.git'
          }
       }
+
+    // using MAVEN target folder is cretead and target folder contains .war file
 	  stage('build') {
 		 steps {
             sh "mvn clean install"
          }
       }
-	  stage('docker image') {
+
+    /* #########  Using ANT   #########
+                1. copy-artifacts
+                2. staging- copy install folder
+                3. Build docker image
+                4. Docker- Login
+                5. Push docker image in to dockerhub
+    */
+      stage('docker-image') {
          steps {
             sh "ant push-docker-image"
          }
       } 
+      
+    //Docker-Compose are used to run the container
+      stage('') 
+         steps {
+            sh 'docker-compose -f staging/docker/docker-compose.yml up --abort-on-container-exit'
+         }
+      }
+    //
 	  stage('Push archive to s3') {
          steps {
             sh "ant push-archive"

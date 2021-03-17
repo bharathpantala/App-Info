@@ -1,4 +1,4 @@
-1`<?xml version="1.0"?>
+<?xml version="1.0"?>
 <project name="App-Info" default="main" basedir=".">
     <property file="build.properties"/>
     <!-- Sets variables which can later be used. -->
@@ -7,9 +7,9 @@
     <property name="build.dir" location="target" />
     <property name="artifact.dir" location="install" />
     <property name="docker-staging.dir" location="staging/docker" />
-    <property name="dockerhub-name" value="anunaidu" />
+    <property name="dockerhub-name" value="${ai.username}" />
     <property name="project-name" value="app-info" />
-    <property name="version" value="10.1" />
+    <property name="version" value="1.0" />
     <property name="archive" value="tar" />
     <property name="bucket" value="s3://app-info-jen/" />
 
