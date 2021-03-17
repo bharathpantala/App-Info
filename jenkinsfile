@@ -1,0 +1,31 @@
+pipeline {
+
+	agent any
+	
+	tools {
+      maven "maven"
+      ant "ant"
+   }
+   
+    stages {
+      stage('SCM') {
+         steps {
+            git 'https://github.com/anunaidu/App-Info.git'
+         }
+      }
+	  stage('build') {
+		 steps {
+            sh "mvn clean install"
+         }
+      }
+	  stage('docker image') {
+         steps {
+            sh "ant push-docker-image"
+         }
+      } 
+	  stage('Push archive to s3') {
+         steps {
+            sh "ant push-archive"
+         }
+      } 
+}

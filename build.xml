@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+1`<?xml version="1.0"?>
 <project name="App-Info" default="main" basedir=".">
     <property file="build.properties"/>
     <!-- Sets variables which can later be used. -->
