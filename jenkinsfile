@@ -12,6 +12,7 @@ pipeline {
       stage('SCM') {
          steps {
             git 'https://github.com/anunaidu/App-Info.git'
+            sh  "git checkout ant-login-1.0"
          }
       }
 
