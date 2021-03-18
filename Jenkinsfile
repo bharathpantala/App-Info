@@ -22,20 +22,15 @@ pipeline {
          }
       }
 
-    /* #########  Using ANT   #########
-                1. copy-artifacts
-                2. staging- copy install folder
-                3. Build docker image
-                4. Docker- Login
-                5. Push docker image in to dockerhub
-    */
-      stage('docker-image') {
+    // #########  ANT   #########
+    // Copy Artifacts
+      stage('staging') {
          steps {
-            sh "ant push-docker-image"
+            sh "ant docker-staging"
          }
       } 
 
-    //Docker-Compose used to run the containers -- Mysql:5.6 and app-info:1.0
+    /*Docker-Compose used to run the containers -- Mysql:5.6 and app-info:1.0
       stage('container') { 
          steps {
             sh "docker-compose -f staging/docker/docker-compose.yml up -d --abort-on-container-exit"
@@ -46,6 +41,6 @@ pipeline {
          steps {
             sh "ant push-archive"
          }
-      } 
+      } */
     }
 }
