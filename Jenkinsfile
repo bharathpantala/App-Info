@@ -16,7 +16,7 @@ pipeline {
       }
 
     // using MAVEN target folder is cretead and target folder contains .war file
-	  stage('build') {
+	  stage('install') {
 		 steps {
             sh "mvn clean install"
          }
@@ -24,7 +24,7 @@ pipeline {
 
     // #########  ANT   #########
     // Copy Artifacts
-      stage('staging') {
+      stage('build') {
          steps {
             sh "ant docker-staging"
          }
