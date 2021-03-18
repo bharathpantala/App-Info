@@ -29,8 +29,25 @@ pipeline {
             sh "ant clean"
          }
       } 
-
-    /*Docker-Compose used to run the containers -- Mysql:5.6 and app-info:1.0
+      // Copy artifacts
+      stage('staging') {
+         steps {
+            sh "ant docker-staging"
+         }
+      } 
+      // Build Docker Imagge
+      stage('image') {
+         steps {
+            sh "ant docker-image"
+         }
+      } 
+      // Push Image to docker Hub
+      stage('push') {
+         steps {
+            sh "ant push-docker-image"
+         }
+      } 
+    //Docker-Compose used to run the containers -- Mysql:5.6 and app-info:1.0
       stage('container') { 
          steps {
             sh "docker-compose -f staging/docker/docker-compose.yml up -d --abort-on-container-exit"
@@ -41,6 +58,6 @@ pipeline {
          steps {
             sh "ant push-archive"
          }
-      } */
+      } 
     }
 }
