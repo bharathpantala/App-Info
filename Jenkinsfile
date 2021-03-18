@@ -29,11 +29,11 @@ pipeline {
                 4. Docker- Login
                 5. Push docker image in to dockerhub
     */
-      stage('ant-build') {
+      /*stage('ant-build') {
          steps {
-            sh 'ant -f ./build.xml'
+            sh 'ant -f build.xml'
          }
-      }
+      }*/
       stage('docker-image') {
          steps {
             sh "ant push-docker-image"
