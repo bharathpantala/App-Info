@@ -31,7 +31,7 @@ pipeline {
     */
       stage('ant-build') {
          steps {
-            sh 'ant -f build.xml'
+            sh 'ant -f ./build.xml'
          }
       }
       stage('docker-image') {
