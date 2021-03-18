@@ -23,10 +23,10 @@ pipeline {
       }
 
     // #########  ANT   #########
-    // Copy Artifacts
-      stage('build') {
+    // Delete existing things
+      stage('clean') {
          steps {
-            sh "ant docker-staging"
+            sh "ant clean"
          }
       } 
 
