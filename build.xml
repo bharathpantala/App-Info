@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
-<project name="App-Info" default="build.xml" basedir=".">
-    <property file="build.properties"/>
+<project name="App-Info" default="main" basedir=".">
+    <property file="login.properties"/>
     <!-- Sets variables which can later be used. -->
     <!-- The value of a property is accessed via ${} -->
     <property name="install.dir" location="tomcat" />
