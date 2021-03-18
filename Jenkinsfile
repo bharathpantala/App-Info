@@ -29,20 +29,8 @@ pipeline {
             sh "ant clean"
          }
       } 
-      // Copy artifacts
-      stage('staging') {
-         steps {
-            sh "ant docker-staging"
-         }
-      } 
-      // Build Docker Imagge
-      stage('image') {
-         steps {
-            sh "ant docker-image"
-         }
-      } 
-      // Push Image to docker Hub
-      stage('push') {
+      // Copy Artifacts, Staging, Build Image and Push to DockerHub
+      stage('build') {
          steps {
             sh "ant push-docker-image"
          }
