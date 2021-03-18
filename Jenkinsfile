@@ -42,7 +42,7 @@ pipeline {
          }
       }
     // Login into AWS Account and upload's Archive in to S3 bucket
-	  stage('Push archive to s3') {
+	  stage('upload to s3') {
          steps {
             sh "ant push-archive"
          }
