@@ -29,7 +29,7 @@ pipeline {
                 4. Docker- Login
                 5. Push docker image in to dockerhub
     */
-      stage('build') {
+      stage('ant-build') {
          steps {
             bat 'call ant -f App-Info\\build.xml'
          }
