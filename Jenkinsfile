@@ -31,7 +31,7 @@ pipeline {
     */
       stage('docker-image') {
          steps {
-            sh "ant -f build.xml push-docker-image"
+            sh "ant push-docker-image"
          }
       } 
 
