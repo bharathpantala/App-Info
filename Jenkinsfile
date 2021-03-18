@@ -36,9 +36,9 @@ pipeline {
          }
       } 
     //Docker-Compose used to run the containers -- Mysql:5.6 and app-info:1.0
-      stage('container') { 
+      stage('Deploy') { 
          steps {
-            sh "docker-compose -f staging/docker/docker-compose.yml up -d --abort-on-container-exit"
+            sh "docker-compose -f staging/docker/docker-compose.yml up -d"
          }
       }
     // Login into AWS Account and upload's Archive in to S3 bucket
