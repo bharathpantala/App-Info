@@ -31,7 +31,7 @@ pipeline {
     */
       stage('docker-image') {
          steps {
-            sh "ant push-docker-image"
+            sh "ant -f App-info push-docker-image"
          }
       } 
 
